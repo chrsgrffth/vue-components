@@ -1,3 +1,4 @@
+<script lang="coffee">
 # To get the `action` prop:
 #
 # 1. Go to your dashboard on mailchimp.com and navigate 
@@ -10,7 +11,6 @@
 #      <mailchimp-subscribe 
 #          action="//yourname.us10.list-manage.com/subscribe/post?u=012345678910&id=ab12345
 #      ></mailchimp subscribe>
-#
 
 module.exports =
   name: "MailchimpSubscribe"
@@ -50,12 +50,13 @@ module.exports =
             # strip that out for the end user.
             @errorMessage = @errorMessage.substring(@errorMessage.indexOf('-')+1, @errorMessage.length)
       )
+</script>
 
-  template: """
-    <form v-if="!successMessage" @submit.prevent="subscribe($event)">
-      <input v-model="email" name="EMAIL" type="text" placeholder="Email" id="email" />
-      <input type="submit" />
-    </form>
-    <p v-if="errorMessage && !successMessage">{{ errorMessage }}</p>
-    <p v-if="successMessage">{{ successMessage }}</p>
-  """
+<template>
+  <form v-if="!successMessage" @submit.prevent="subscribe($event)">
+    <input v-model="email" name="EMAIL" type="text" placeholder="Email" id="email" />
+    <input type="submit" />
+  </form>
+  <p v-if="errorMessage && !successMessage">{{ errorMessage }}</p>
+  <p v-if="successMessage">{{ successMessage }}</p>
+</template>
